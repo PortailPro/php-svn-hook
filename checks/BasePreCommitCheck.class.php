@@ -6,9 +6,13 @@ abstract class BasePreCommitCheck {
   protected $globalError = array();
   protected $codeError = array();
   protected $options = array();
+  protected $repoName = null;
+  protected $trxNum = null;
 
-  public function __construct($svnComment=''){
+  public function __construct($svnComment='', $repoName = null, $trxNum = null){
     $this->svnComment = $svnComment;
+    $this->repoName = $repoName;
+    $this->trxNum = $trxNum;
     $this->parseOptions();
   }
   
