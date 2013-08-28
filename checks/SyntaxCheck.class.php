@@ -17,6 +17,10 @@ class SyntaxCheck extends BasePreCommitCheck
 
   public function checkFullFile($lines, $filename)
   {
+    if ( $this->hasOption('no-syntax') ){
+      return;
+    }
+
     $this->hasPhpBinary();
     
     if ($this->getExtension($filename) !== 'php') {
@@ -42,5 +46,10 @@ class SyntaxCheck extends BasePreCommitCheck
       
       self::$has_php_binary = true;
     }
+  }
+  
+  public function renderInstructions()
+  {
+    return "If you want to force commit with error syntax, add the parameter --no-syntax in your comment";
   }
 }
